@@ -1,4 +1,4 @@
-### THIS IS README ME
+# PARTS ORDERING FOR BACK2BIKES
 
 ## 1. Who is your client?
 
@@ -8,10 +8,10 @@ back2bikes is run by volunteers, and is supported by Port Phillip Council.
 
 They are looking for:
 
-*  New volunteer mechanics (no skills required)
-*  New volunteers to promote them
-*  Donations of usable bikes and parts
-*  Bike servicing
+* New volunteer mechanics (no skills required)
+* New volunteers to promote them
+* Donations of usable bikes and parts
+* Bike servicing
 
 They offer:
 
@@ -23,42 +23,18 @@ They offer:
 
 We are happy to be involved with an organisation that helps the community and is not for profit.
 
-## 2. What is your client’s need (i.e. challenge) that you will be addressing in yourproject?
+## 2. What is your client’s need (i.e. challenge) that you will be addressing in your project?
 
-Back2bikes buy all of their parts from one supplier, Bicycle Parts Wholesale and they do not provide RRP (Recommended Retail Price) to them.
+Back2bikes buy all of their parts from one supplier, Bicycle Parts Wholesale who do not provide RRP (Recommended Retail Price) to them.
 At present they can't hide the trade price from the customer when looking at their web site. 
 
 http://www.bicyclepartswholesale.com.au/page/10/product-catalogues
 
-Bicycle Parts Wholesale (BPW) publish a glossy colour catalogue, which is essential when placing orders, as the photos on the web site and the descriptions are not always adequate to work out which part to order.
+Bicycle Parts Wholesale (BPW) publish a glossy colour catalogue, which is essential when placing orders, as the photos on the web site and the descriptions are not always adequate to work out which part to order. After finding the part number in the cataloguer, the manager accesses the BPW website to get the price for the customer which is not published in the catalogue. Even though the price on the website might say $10 - it is the wholesale price and does not include things like gst, delivery, and profit to pay the employed staff. (Most are volunteers at back2bikes but the manager is employed by them.)
 
-Back2bikes have a XLSX file of their database. It is simply a list of a part number, a short description and a bar code number. No category or sub-category information is available.
+ It is often a timeconsuming and awkward process telling a customer a much higher price than the wholesale price they can see on the screen. back2bikes hope that we can come up with a solution to this problem over the three weeks of this project.
 
-So we need to do the following:
-
-* Import the parts list and prices to our (Mongo) database
-* Provide a simple page (within their existing Meteor app) to allow searching of the database, either by name or part no
-* Write an algorithm to calculate a RRP
-* Display the price of the part(s) found as a list
-* Provide an advanced search option
-
-### Possible extension: 
-
-* Allow part to be added to a draft order, with a quantity
-* Review draft order, add/remove parts
-* Send order to supplier (via email)
-* BPW will send them updates to the price list regurarly. An update process should allow an import of the new XLSX file, but it should be checked to make sure that 1) The number of items should be +/- 10%, average prices should also be +/- 10%
-
-All to be done using React, Storybook, TDD
-
-### Pricing algorithm
-
-* The first calculation is to double the wholesale price to make RRP. 
-* This helps to cover GST and shipping costs.
-* Anything over $60, the margin is 50%
-* Anything over $100 the margin is 30%
-
-# 3. Describe the client’s current setup and data.
+## 3. Describe the client’s current setup and data.
 
 React JS
 Used in the front-end. This front-end framework will allow us to segregate all of our on-screen components letting us combine them into a well-designed UI for the user. Manipulation of component props and state will be updated in real-time so load times are much less.
@@ -81,28 +57,59 @@ A containerize platform that is designed to make it easier to create,deploy and 
 
 ## 4. Describe the project will you be conducting and how your App will address the client’s needs.
 
-Back2Bikes buy all their bicycle parts from one particular supplier - Bicycle Wholesale Australia.
+back2bikes buy all their bicycle parts from one particular supplier - Bicycle Wholesale Australia.
 
-During customer's bicycle assesment the mechanic comes up with a list of parts that will be required to conduct the repairs. The qualification/sale process is most succesfull with being able to present the prices and details right there on the spot so the customer can make the decision, whether they would like to get the repairs done. At the moment Back2Bikes exposeses their nett, wholesale pricing to the customers , which allows them to convert the sale on spot , however they are unable to introduce Retail Recommended Pricing which will increase the revenue of the foundation. They usually try to explain to the customer additional costs (GST, freight etc) however it is a timeconsuming and awkward process.
+The solution to the problem identified in question 2 is to create a full stack application that will pull the data from the supplier and render it on Back2Bikes own app in workshop. This way mechanics/volunteers can follow their known sale/consulting process with improving on margins that come from parts sales.
 
-The solution is to create a full stack application that will pull the data from the supplier and render it on Back2Bikes own app in workshop. This way mechanics/volunteers can follow their known sale/consulting process with improving on margins that come from parts sales.
-The application will allow for searching via part number ( volunteers use in house, pysical catalogue for parts' number), name and description.
-The solution includes creating Backend that will organise the data from the supplier and algorythms for rendering RRP on the Frontend.
+The application will allow for searching via part number (volunteers use in house, pysical catalogue for parts' number), name and description.
 
-### 5. Identify and describe the software (including databases) to be used in your App.
+The solution includes creating a backend that will organise the data from the supplier and algorythms for rendering RRP on the frontend.
 
-* **Visual Studio Code**
+back2bikes have a XLSX file of the suppliers database. It is simply a list of parts with a part number, a short description, a barcode and wholesale price. No category or sub-category information is available.
+
+To solve this problem we need to do the following:
+
+* Import the parts list and prices to our (Mongo) database
+* Provide a simple page (within their existing Meteor app) to allow searching of the database, either by name or part number
+* Write an algorithm to calculate a RRP
+* Display the price of the part(s) found as a list
+* Provide an advanced search option
+* Integrate this solution into their current app
+
+All to be done using React, Storybook, TDD
+
+### Possible extension: 
+
+* Allow part to be added to a draft order, with a quantity
+* Review draft order, add/remove parts
+* Send order to supplier (via email)
+
+### Pricing algorithm
+
+* The first calculation is to double the wholesale price to make RRP. 
+* This helps to cover GST and shipping costs.
+* Anything over $60, the margin is 50%
+* Anything over $100 the margin is 30%
+
+## 5. Identify and describe the software (including databases) to be used in your App.
+
+### Visual Studio Code
   * Visual Studio Code is a source code editor. It includes support for debugging, embedded Git control, syntax highlighting, intelligent code completion, snippets, and code refactoring. This is our standard text editor, but some may opt to not use it.
-* **Storybook**
+
+### Storybook
   * Storybook is a development environment for UI components. It allows you to browse a component library, view the different states of each component, and interactively develop and test components. We will be using this throughout our testing phases before pushed to production.
-* **Figma**
+
+### Figma
   * Our standard for designing and will be used to create our wireframes. Figma is a free software that makes wireframing very easy with the ability to create components and reuse them in our design however we like.
-* **Nuclino**
+
+### Nuclino
   * Nuclino is a cloud-based team collaboration software which allows teams to collaborate and share information in real-time. We will be using this to share information that will stay the same throughout the length of the project, such as coding standards and git workflow practices.
-* **Trello**
+
+### Trello
   * Trello is a collaboration tool that organizes your projects into boards. In one glance, Trello tells you what's being worked on, who's working on what, and where something is in a process. We will be using this throughout the project to track who is working on what and what is being worked on, so there is no overlap.
 
-* **MongoDB** is the database used in our application. Our client already uses this so we will continue to do the same for consistency.
+### MongoDB
+  * MongoDB is the database used in our application. Our client already uses this so we will continue to do the same for consistency.
 
 ## 6. Identify and describe the network setup you will use in your development.
 
@@ -120,24 +127,24 @@ The app will exist online, hosted by the back2bikes current site. They already r
 
 ## 8. Describe the architecture of your App.
 
-The architecture of our app consist of a front-end and a backend.
+The architecture of our app consists of a front-end and a backend.
 
-Back-end
+### Back-end
 
 In the backend we are using MongoDB Database. Although MongoDB is schema-less database and is document orientated, it is good practice to constrain the contents of the collections to conform to a known format.
+
 That way we do not need to write defensive code to check and confirm the structure of the data as it comes out of the database, instead of when it goes into the database. The logic behind creating a schema in a document-orientated database is because we tend to read data more often you write it.
-Parts schema and Order schema
 
-Front-end
+### Front-end
 
-We are using React on the front end to render components on the client side. We use Minimongo library which creates a local cache in the front-end allowing that allows us make live-updating database queries.
+We are using React on the front end to render components on the client side. We use Minimongo library which creates a local cache in the front-end allowing us make live-updating database queries.
 
-App Architecture
+### App Architecture
 
-Meteor initializes code from the Client and Server directory. Both Client and Server will point to the configuration files in the startup directory and load all the code.
-The app's main architecture is made up client, server and 
+Meteor initialises code from the Client and Server directory. Both Client and Server will point to the configuration files in the startup directory and load all the code.
+
+The app's main architecture is made up client, server and imports.
 ```
-imports/
 server/
 client/
 imports/
@@ -148,7 +155,9 @@ imports/
     ui/
  ``` 
 
-App Flow Deployment
+![App Flow](assets/app_flow.png) 
+
+### Deployment
 
 The app will be deployed on Heroku. All builds and releases will be managed on Heroku.
 
@@ -156,14 +165,14 @@ The app will be deployed on Heroku. All builds and releases will be managed on H
 
 The application will consist of backend which will pull the data from the supplier and serve it to the Meteor's Frontend.
 
-Front end will consist of:
+Front-end will consist of:
     
     1. COMPONENT: List of parts (name, part number, description, image ... )
         
         i. COMPONENT: A card with for each individual part
 
 
-    2. COMPONENT: search bar
+    2. COMPONENT: Search bar
 
         i. COMPONENT: input field
 
@@ -173,8 +182,9 @@ Front end will consist of:
 
 There are no direct or obvious third party services used. However we are using:
 
-* React by Facebook
-* Heroku ( Deployment )
+* React by Facebook - a Javascript library for building user interfaces.
+
+* Heroku ( Deployment ) - a cloud platform hosting service that supports numerous programming languages.
 
 ## 11. Identify the database to be used in your app and provide a justification for your choice.
 
@@ -186,9 +196,7 @@ Using a MongoDB data model lets us represent hierachical relationships, data arr
 
 ## 13. Provide your database schema design
 
-In the backend we are using MongoDB Database. Although MongoDB is schema-less database and is document orientated, it is good practice to constrain the contents of the collections to conform to a known format.
-
-That way we do not need to write defensive code to check and confirm the structure of the data as it comes out of the database, instead of when it goes into the database. The logic behind creating a schema in a document-orientated database is because we tend to read data more often you write it.
+Our database will consist of two schemas. One for orders and one for parts. Orders will contain what is in the order and other order information while the parts schema will consist of the details and information about each part.
 
 ![Parts schema and Order schema](./assets/b2b_db_design.png)
 
@@ -204,10 +212,12 @@ That way we do not need to write defensive code to check and confirm the structu
 
 - As an experienced manager I don't want my process to change too much so I can continue building relationships with customers
 
-- An an experienced manager I dislike our show ordering process, accessing a slow website on a slow computer as it takes too much time out of my day
+- As an experienced manager I dislike our slow ordering process, accessing a slow website on a slow computer as it takes too much time out of my day
 
 - As an experienced manager I find it difficult to explain the price we charge to customers as they can see the wholesale price when we are putting an order through
+
 - As a shop manager, I would like to save parts that need to be ordered throughout a day everyday so I can confirm the order with the wholesaler only once or twice a week at max
+
 - As a shop Manager, I would like to review the order before I confirm it, so I can amend quantity and be able to remove items if they are not needed anymore
 
 - As a shop manager, I would like to be able to quickly distinguish whether I am on searching parts page or reviewing order list so I don't waste my time looking for a parts in the wrong place
@@ -216,7 +226,7 @@ That way we do not need to write defensive code to check and confirm the structu
 
 - As a new assistant manager I would like to quickly search for an item using item number and add it to shop ordering cart, so I don't forget to order it later
 
-### Back2Bikes Owner
+### back2bikes Owner
 
 - As the owner of the business, I would like to be able to see both the net price and wholesale price within the ordering system, so money in and out can be tracked easily
 
@@ -232,14 +242,31 @@ That way we do not need to write defensive code to check and confirm the structu
 
 - As a customer I like transparent costing so I don't encounter any hidden costs later on
 
-## 15.
+## 15. Provide wireframes for your app.
 
-# 16. Describe the way Tasks are being allocated and tracked in your project.
+![Search result with shaded hover-over/add to cart](assets/wireframe1.png)
+
+![card/item components based on current attendance app volunteer cards](assets/wireframe2.png)
+
+![buttons/nav bar component](assets/wireframe3.png)
+
+![other buttons used throughout app](assets/wireframe4.png)
+
+![complete page with list of orders](assets/wireframe5.png)
+
+![list of orders - shop view(showing wholesale prices)](assets/wireframe6.png)
+
+![single item view - one card - mobile](assets/wireframe7.png)
+
+![item list/search results - alternative view](assets/wireframe8.png)
+
+## 16. Describe the way Tasks are being allocated and tracked in your project.
+
 ### Agile
-Agile methodology is used in many software development environment, we have stand ups every morning and record them into our trello board. 
+Agile methodology is used in many software development environments, we have stand ups every morning and record them into our trello board. 
 
 #### Trello 
-We used Trello, a project management tool to allocate and track key milestones in our project and Nuclino, a workflow management tool.
+We use Trello, a project management tool to allocate and track key milestones in our project and Nuclino, a workflow management tool.
 
 ### Internal Team Trello Board
 - Tasks filled on cards are required for planning phase.
@@ -349,13 +376,13 @@ The requirements related to the information system security hinge upon our clien
 The existing software used by the client does not currently require many security features due to the fact that the client does not handle any sensitive data. In saying that, we have been aware of industry standards related to security. This includes not pushing vulnerable data to github (environment variables), using secure messaging services, and respecting our clients privacy requests.
 
 ## 21. Discuss methods you will use to protect information and data.
-Firstly we are using environment variables to store our keys securely. Any sensitive data(supplier parts details) has not been included in the project on Github to make sure this information is not misused. Any members/volunteers are already using seceret pin number to check in for days work.
 
+Firstly we are using environment variables to store our keys securely. Any sensitive data(supplier parts details) has not been included in the project on Github to make sure this information is not misused. Any members/volunteers are already using seceret pin number to check in for days work.
 
 ## 22. Research what your legal obligations are in relation to handling user data.
 
 The GDPR is the most official guidelines regarding handling of personal information. The GDPR states: if we are to store personal data we are to disclose the fact that we are doing so, or not do so at all. No personal data may be processed unless it is done under a lawful basis. Users of the application may request a copy of the personal information collected in a common format, and may have the right to delete any data upon request.
 
-Because we are only creating an application based on making orders and will only be used by staff of the company, we will not have to worry about the GDPR guidelines.
+Because we are only creating an application based on making orders and will only be used by staff of the company, we will not have to worry about the GDPR guidelines. We are also not collecting or storing any personal information through our app.
 
 ***
