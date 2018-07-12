@@ -1,0 +1,23 @@
+{
+  "name": "readmeproject",
+  "version": "1.0.0",
+  "description": "## 1. Who is your client?",
+  "main": "retailPrice.js",
+  "dependencies": {
+    "jest": "^23.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/waltandmartha/readmeproject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/waltandmartha/readmeproject/issues"
+  },
+  "homepage": "https://github.com/waltandmartha/readmeproject#readme"
+}
