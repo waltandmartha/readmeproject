@@ -123,17 +123,15 @@ We did not have to use Amazon Web Services due to the fact that our assets are a
 
 Even though our app will be deployed online, it will primarily be accessed from just one computer in the back2bikes workspace. The App will not be hosted on a local server but deployed to the cloud. 
 
-The app will exist online, hosted by the back2bikes current site. They already run an attendance web app that the volunteers use to sign in and out when they are in attendance. Our app will integrate into this seamlessly.
+The app will exist online, deployed to Heroku and integrared into the current back2bikes web app. They already run an attendance web app that the volunteers use to sign in and out when they are in attendance. Our app will integrate into this seamlessly.
 
 ## 8. Describe the architecture of your App.
-
-The architecture of our app consists of a front-end and a backend.
 
 ### Back-end
 
 In the backend we are using MongoDB Database. Although MongoDB is schema-less database and is document orientated, it is good practice to constrain the contents of the collections to conform to a known format.
 
-That way we do not need to write defensive code to check and confirm the structure of the data as it comes out of the database, instead of when it goes into the database. The logic behind creating a schema in a document-orientated database is because we tend to read data more often you write it.
+That way we do not need to write code to check and confirm the structure of the data as it _comes out_ of the database, instead of when it _goes into_ the database. The logic behind creating a schema in a document-orientated database is because we tend to _read data_ more often than _write data_.
 
 ### Front-end
 
@@ -192,9 +190,48 @@ MongoDB is the database used in our application. Our client already uses this so
 
 Using a MongoDB data model lets us represent hierachical relationships, data arrays and other complex structures we may need to take advantage of during development.
 
-## 12. 
+## 12. Discuss the database relations to be implemented.
 
-## 13. Provide your database schema design
+Due to MongoDB being a document-orientated database, this minimizes and may even elimate relational data. Our database contains two collections; _Parts_ and _Orders_.
+
+The _Orders_ schema contains a field of _ordered parts_ where the value would contain an list of _parts_.
+
+In a relational type database _ordered parts_ has many _parts_. However for a document-orientated database the approach is to embedd the _parts_ collection in the _orders_ collection.
+
+_ordered parts contain an array of part objects_
+
+```
+Orders.schema = new SimpleSchema({
+        sent: {
+		type: Number, 
+		defaultValue: 0
+        },
+	createdAt: {
+		type: Date, 
+		label: 'created at'
+        },
+	updatedAt: {
+		type: Date, 
+		label: 'updated at'
+        },
+	orderedParts: [ 
+		{}], // array of part objects 
+		min: 1
+	},
+	totalPrice: { 
+		type: Number, 
+		label: 'Total Cost',
+		required: true;
+	},
+	additionalNotes: {
+		type: String,
+		label: 'Optional Notes'
+		optional: true;
+	},
+})
+```
+
+## 13. Provide your database schema design.
 
 Our database will consist of two schemas. One for orders and one for parts. Orders will contain what is in the order and other order information while the parts schema will consist of the details and information about each part.
 
@@ -244,21 +281,37 @@ Our database will consist of two schemas. One for orders and one for parts. Orde
 
 ## 15. Provide wireframes for your app.
 
-![Search result with shaded hover-over/add to cart](assets/wireframe1.png)
+### Search result with shaded hover-over/add to cart
 
-![card/item components based on current attendance app volunteer cards](assets/wireframe2.png)
+ ![Search result with shaded hover-over/add to cart](assets/wireframe1.png)
 
-![buttons/nav bar component](assets/wireframe3.png)
+### Card/item components based on current attendance app volunteer cards
 
-![other buttons used throughout app](assets/wireframe4.png)
+ ![card/item components based on current attendance app volunteer cards](assets/wireframe2.png)
 
-![complete page with list of orders](assets/wireframe5.png)
+### Buttons/nav bar component
 
-![list of orders - shop view(showing wholesale prices)](assets/wireframe6.png)
+ ![buttons/nav bar component](assets/wireframe3.png)
 
-![single item view - one card - mobile](assets/wireframe7.png)
+### Other buttons used throughout app
 
-![item list/search results - alternative view](assets/wireframe8.png)
+ ![other buttons used throughout app](assets/wireframe4.png)
+
+### Complete page with list of orders
+
+ ![complete page with list of orders](assets/wireframe5.png)
+
+### List of orders - shop view(showing wholesale prices)
+
+ ![list of orders - shop view(showing wholesale prices)](assets/wireframe6.png)
+
+### Single item view - one card - mobile
+
+ ![single item view - one card - mobile](assets/wireframe7.png)
+
+### Item list/search results - alternative view
+
+ ![item list/search results - alternative view](assets/wireframe8.png)
 
 ## 16. Describe the way Tasks are being allocated and tracked in your project.
 
